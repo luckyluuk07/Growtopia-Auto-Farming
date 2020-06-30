@@ -8,21 +8,21 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="Growtopia Auto Farming" Height="250" Width="250" MouseDown="Window_MouseDown" Loaded="Window_Loaded">
-    <Grid>
+    <Grid Background="LightYellow">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label>Player Movement</Label>
+            <Label FontSize="18" Foreground="SaddleBrown">Player Movement</Label>
             <WrapPanel>
-                <RadioButton Margin="4" GroupName="Movement" x:Name="left">
+                <RadioButton Margin="4" GroupName="Movement" x:Name="left" Foreground="SaddleBrown" FontWeight="Bold" FontSize="14">
                     Left
                 </RadioButton>
-                <RadioButton Margin="4" GroupName="Movement" IsChecked="True" x:Name="right">
+                <RadioButton Margin="4" GroupName="Movement" IsChecked="True" x:Name="right" Foreground="SaddleBrown" FontWeight="Bold" FontSize="14">
                     Right
                 </RadioButton>
             </WrapPanel>
-            <CheckBox IsChecked="True" x:Name="punch" Margin="4">Punch</CheckBox>
+            <CheckBox IsChecked="True" x:Name="punch" Margin="4" Foreground="SaddleBrown" FontWeight="Bold" FontSize="14">Punch</CheckBox>
             <WrapPanel HorizontalAlignment="Center" Margin="8">
-                <Button Padding="4" Margin="8" Click="Button_Click" x:Name="btnStart">Start</Button>
-                <Button Padding="4" Margin="8" IsEnabled="False" x:Name="btnStop" Click="btnStop_Click">Stop</Button>
+                <Button Padding="4" Margin="8" Click="Button_Click" x:Name="btnStart" Background="CadetBlue" Foreground="White" FontSize="20">Start</Button>
+                <Button Padding="4" Margin="8" IsEnabled="False" x:Name="btnStop" Click="btnStop_Click" Background="CadetBlue" Foreground="White" FontSize="20">Stop</Button>
             </WrapPanel>
         </StackPanel>
     </Grid>

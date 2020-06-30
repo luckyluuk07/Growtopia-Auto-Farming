@@ -144,6 +144,8 @@ namespace Auto_Farming_Growtopia
                 MessageBoxResult msg = MessageBox.Show("Open Growtopia and go to your world first", "Growtopia Auto Farming Warning", MessageBoxButton.OK, MessageBoxImage.Error);
                 if (msg == MessageBoxResult.OK)
                 {
+                    inputSimulator.Keyboard.KeyUp(movement);
+                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
                     btnStop.IsEnabled = false;
                     btnStart.IsEnabled = true;
                 }
