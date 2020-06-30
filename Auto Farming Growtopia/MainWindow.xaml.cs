@@ -115,26 +115,38 @@ namespace Auto_Farming_Growtopia
 
         public void BringMainWindowToFront(string processName)
         {
-            // get the process
-            Process bProcess = Process.GetProcessesByName(processName).FirstOrDefault();
-
-            // check if the process is running
-            if (bProcess != null)
+            try
             {
-                // check if the window is hidden / minimized
-                if (bProcess.MainWindowHandle == IntPtr.Zero)
+                // get the process
+                Process bProcess = Process.GetProcessesByName(processName).FirstOrDefault();
+
+                // check if the process is running
+                if (bProcess != null)
                 {
-                    // the window is hidden so try to restore it before setting focus.
-                    ShowWindow(bProcess.Handle, ShowWindowEnum.Restore);
-                }
+                    // check if the window is hidden / minimized
+                    if (bProcess.MainWindowHandle == IntPtr.Zero)
+                    {
+                        // the window is hidden so try to restore it before setting focus.
+                        ShowWindow(bProcess.Handle, ShowWindowEnum.Restore);
+                    }
 
-                // set user the focus to the window
-                SetForegroundWindow(bProcess.MainWindowHandle);
-            }
-            else
+                    // set user the focus to the window
+                    SetForegroundWindow(bProcess.MainWindowHandle);
+                }
+                else
+                {
+                    // the process is not running, so start it
+                    Process.Start(processName);
+                }
+            } catch (Exception ex)
             {
-                // the process is not running, so start it
-                Process.Start(processName);
+                ex.ToString();
+                MessageBoxResult msg = MessageBox.Show("Open Growtopia and go to your world first", "Growtopia Auto Farming Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (msg == MessageBoxResult.OK)
+                {
+                    btnStop.IsEnabled = false;
+                    btnStart.IsEnabled = true;
+                }
             }
         }
 
