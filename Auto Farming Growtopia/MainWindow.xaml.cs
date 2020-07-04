@@ -26,7 +26,8 @@ namespace Auto_Farming_Growtopia
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool punchs = true;
+            bool blocks = true;
+            bool others = false;
             btnStop.IsEnabled = true;
             btnStart.IsEnabled = false;
             _canceller = new CancellationTokenSource();
@@ -38,16 +39,22 @@ namespace Auto_Farming_Growtopia
             {
                 movement = VirtualKeyCode.VK_D;
             }
-            if (punch.IsChecked == false)
+            if (block.IsChecked == false && other.IsChecked == false)
             {
-                punchs = false;
-            } else if (punch.IsChecked == true)
+                blocks = false;
+                others = false;
+            } else if (block.IsChecked == true)
             {
-                punchs = true;
+                blocks = true;
+                others = false;
+            } else if (other.IsChecked == true)
+            {
+                others = true;
+                blocks = false;
             }
 
             BringMainWindowToFront("Growtopia");
-            farm(punchs);
+            farm(blocks, others);
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -67,20 +74,30 @@ namespace Auto_Farming_Growtopia
             BringMainWindowToFront("Auto Farming Growtopia");
         }
 
-        public async void farm(bool punchs)
+        private async void farm(bool blocks, bool others)
         {
             await Task.Run(() =>
             {
                 do
                 {
-                    if (punchs == true)
+                    if (blocks == true)
                     {
                         inputSimulator.Keyboard.KeyDown(movement);
                         inputSimulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
                         Thread.Sleep(250);
                         inputSimulator.Keyboard.KeyUp(movement);
                         inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
-                    } else if (punchs == false)
+                    }
+                    else if (others == true)
+                    {
+                        inputSimulator.Keyboard.KeyDown(VirtualKeyCode.SPACE);
+                        Thread.Sleep(500);
+                        inputSimulator.Keyboard.KeyDown(movement);
+                        Thread.Sleep(100);
+                        inputSimulator.Keyboard.KeyUp(movement);
+                        inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);
+                    }
+                    else if (blocks == false && others == false)
                     {
                         inputSimulator.Keyboard.KeyDown(movement);
                         Thread.Sleep(250);
@@ -171,6 +188,16 @@ namespace Auto_Farming_Growtopia
             {
                 return;
             }
+        }
+
+        private void block_Checked(object sender, RoutedEventArgs e)
+        {
+            other.IsChecked = false;
+        }
+
+        private void other_Checked(object sender, RoutedEventArgs e)
+        {
+            block.IsChecked = false;
         }
     }
 }

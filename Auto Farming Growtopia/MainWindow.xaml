@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Auto_Farming_Growtopia"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Title="Growtopia Auto Farming" Height="250" Width="250" MouseDown="Window_MouseDown" Loaded="Window_Loaded">
     <Grid Background="LightYellow">
@@ -19,7 +19,10 @@
                     Right
                 </RadioButton>
             </WrapPanel>
-            <CheckBox IsChecked="True" x:Name="punch" Margin="4" Foreground="SaddleBrown" FontWeight="Bold" FontSize="14">Punch</CheckBox>
+            <WrapPanel>
+                <CheckBox Checked="block_Checked" x:Name="block" Margin="4" Foreground="SaddleBrown" FontWeight="Bold" FontSize="14">Block</CheckBox>
+                <CheckBox Checked="other_Checked" x:Name="other" Margin="4" Foreground="SaddleBrown" FontWeight="Bold" FontSize="14">Other</CheckBox>
+            </WrapPanel>
             <WrapPanel HorizontalAlignment="Center" Margin="8">
                 <Button Padding="4" Margin="8" Click="Button_Click" x:Name="btnStart" Background="CadetBlue" Foreground="White" FontSize="20">Start</Button>
                 <Button Padding="4" Margin="8" IsEnabled="False" x:Name="btnStop" Click="btnStop_Click" Background="CadetBlue" Foreground="White" FontSize="20">Stop</Button>
